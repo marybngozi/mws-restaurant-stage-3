@@ -1,5 +1,6 @@
 let restaurant;
 var newMap;
+let review;
 
 /**
  * Initialize map as soon as the page is loaded.
@@ -87,6 +88,20 @@ fetchRestaurantFromURL = (callback) => {
 }
 
 /**
+ * Get current restaurant review from page URL.
+ */
+fetchRestaurantReview = (restaurant_id = self.restaurant.id) => {
+  DBReviewHelper.fetchReviewsByRestaurantId(restaurant_id, (error, results) => {
+    if (error) {
+      console.log(error)
+    }else{
+      fillReviewsHTML(results)
+    }
+  })
+
+}
+
+/**
  * Create restaurant HTML and add it to the webpage
  */
 fillRestaurantHTML = (restaurant = self.restaurant) => {
@@ -109,7 +124,7 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
     fillRestaurantHoursHTML();
   }
   // fill reviews
-  fillReviewsHTML();
+  fetchRestaurantReview();
 }
 
 /**
@@ -135,7 +150,7 @@ fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => 
 /**
  * Create all reviews HTML and add them to the webpage.
  */
-fillReviewsHTML = (reviews = self.restaurant.reviews) => {
+fillReviewsHTML = (reviews) => {
   const container = document.getElementById('reviews-container');
   const title = document.createElement('h3');
   title.innerHTML = 'Reviews';
