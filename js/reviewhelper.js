@@ -70,7 +70,6 @@ class DBReviewHelper {
       } else {
         // Filter reviews to have only given restaurant_id type
         const results = reviews.filter(r => r.restaurant_id == restaurant_id);
-        console.log(results);
         callback(null, results);
       }
     });

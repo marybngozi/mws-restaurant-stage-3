@@ -1,6 +1,8 @@
 let restaurant;
 var newMap;
 let review;
+let reviewForm = document.querySelector('#reviews-form');
+let overlay = document.querySelector('#overlay');
 
 /**
  * Initialize map as soon as the page is loaded.
@@ -8,6 +10,14 @@ let review;
 document.addEventListener('DOMContentLoaded', (event) => {
   initMap();
 });
+
+/**
+ * Show form for adding reviews
+ */
+document.querySelector('#add_review_btn').addEventListener('click', (e) => {
+  overlay.style.display = 'block';
+  reviewForm.style.display = 'block';
+})
 
 /**
  * Initialize leaflet map
@@ -179,7 +189,7 @@ createReviewHTML = (review) => {
   li.appendChild(name);
 
   const date = document.createElement('p');
-  date.innerHTML = review.date;
+  date.innerHTML = new Date(review.createdAt).toString().slice(4,15);
   li.appendChild(date);
 
   const rating = document.createElement('p');

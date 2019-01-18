@@ -28,9 +28,16 @@
   <meta name="theme-color" content="#20272f">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin=""/>
   <title>Restaurant Info</title>
+  <style>
+    header{
+      position: sticky;
+      top: 0;
+    }
+  </style>
 </head>
 
 <body class="inside">
+  <div id="overlay"></div>
   <!-- Beginning header -->
   <header>
     <!-- Beginning nav -->
@@ -40,6 +47,7 @@
     <!-- Beginning breadcrumb -->
     <nav role="navigation" aria-label="Breabcrumb">
       <ul role="navigation" id="breadcrumb" aria-label="Breadcrumb">
+        <button id="add_review_btn">Add Reviews</button>
         <li><a href="/">Home</a></li>
       </ul>
     </nav>
@@ -65,10 +73,30 @@
     </section>
     <!-- end restaurant -->
     <!-- Beginning reviews -->
-    <section id="reviews-container" style="position: static;">
+    <section id="reviews-container">
       <ul id="reviews-list"></ul>
     </section>
     <!-- End reviews -->
+
+    <!-- Beginning review form  -->
+    <dialog id="reviews-form">
+      <span id="close-form">x</span>
+      <form action="http://localhost:1337/reviews/" method="post">
+        <input type="hidden" name="restaurant_id" id="restaurant_id">
+        <label for="reviewer_name"> Name:
+          <input type="text" name="reviewer_name" id="reviewer_name">
+        </label><br><br>
+        <label for="rating"> Rating:
+          <input type="text" name="rating" id="rating">
+        </label><br><br>
+        <label for="comment"> Comments:
+          <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
+        </label><br><br>
+        <input type="submit" value="Submit">
+      </form>
+    </dialog>
+    <!-- End reviews -->
+
   </main>
   <!-- End main -->
 
