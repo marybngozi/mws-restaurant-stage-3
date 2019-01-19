@@ -18,15 +18,14 @@ class DBReviewHelper {
     let fetchUrl = DBReviewHelper.DATABASE_REVIEW_URL;
     let networkDataRecieved = false;
     fetch(fetchUrl)
-    .then(res => {
-      return res.json();
-    })
+    .then(res => res.json())
     .then(reviews => {
       networkDataRecieved = true;
       return callback(null, reviews);
     })
     .catch(err => {
       console.log(err);
+      callback(err, null);
       /* if ('indexedDB' in window) {
         readAllData('reviews')
         .then(reviews => {
@@ -72,6 +71,29 @@ class DBReviewHelper {
         const results = reviews.filter(r => r.restaurant_id == restaurant_id);
         callback(null, results);
       }
+    });
+  }
+
+  /**
+   * Post reviews
+   */
+  static postReview(data, callback){
+    fetch(DBReviewHelper.DATABASE_REVIEW_URL, {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(JSON.stringify(data))
+      return callback(null, data);
+    })
+    .catch(err => {
+      console.log(err);
+      callback(err, null);
     });
   }
 }

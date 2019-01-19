@@ -80,21 +80,8 @@ section {
   display: block
 }
 
-#overlay {
-  position: fixed; /* Sit on top of the page content */
-  display: none; /* Hidden by default */
-  width: 100%; /* Full width (cover the whole page) */
-  height: 100%; /* Full height (cover the whole page) */
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
-  z-index: 50; /* Specify a stack order in case you're using a different order for other elements */
-  cursor: pointer; /* Add a pointer on hover */
-}
-
 #maincontent {
+  margin-top: 50px;
   background-color: #f3f3f3;
   min-height: 100%;
   width: 100%
@@ -115,7 +102,10 @@ section {
 }
 
 header {
+  position: fixed;
+  top: 0;
   height: auto;
+  z-index: 40;
   width: 100%
 }
 
@@ -145,16 +135,6 @@ nav h1 a {
   background-color: #eee;
   margin: 0;
   max-width: 100%
-}
-
-#breadcrumb button {
-  position: absolute;
-  left: 25px;
-  padding: 1%;
-  background: #242730;
-  color: #fff;
-  border-radius: 5px;
-  font-size: 20px;
 }
 
 #breadcrumb li {
@@ -417,6 +397,7 @@ nav h1 a {
 }
 
 .inside header {
+  position: fixed;
   right: 0;
   left: 0;
   top: 0;
@@ -503,7 +484,7 @@ nav h1 a {
 }
 
 #reviews-container {
-  padding: 20px 40px 80px
+  padding: 20px 40px;
 }
 
 #reviews-container h3 {
@@ -511,7 +492,7 @@ nav h1 a {
   font-size: 2em;
   font-weight: 300;
   letter-spacing: -1px;
-  padding-bottom: 1em;
+  margin-bottom: 1px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -591,47 +572,33 @@ nav h1 a {
   font-size: 1em;
 }
 
-#reviews-form{
-  display: none;
-  z-index: 100;
-  padding: 3%;
-  position: fixed;
-  top: 30%;
-  left: 15%;
-  background-color: #fff;
-  border: 2px solid #f3f3f3;
-  margin: 0 30px 30px;
-  height: auto;
-  min-height: 200px;
-  width: 60%;
-  border-radius: 5px;
-  -webkit-box-shadow: 2px 1px 1px 0px rgba(0, 0, 0, .2);
-  box-shadow: 2px 1px 1px 0px rgba(0, 0, 0, .2);
+#review-form{
+  padding: 2%;
+  margin: 10px auto;
+  margin-bottom: 80px;
 }
 
-#reviews-form #close-form{
-  position: relative;
-  top: -23px;
-  left: 96%;
-  font-size: 30px;
-  padding: 2% 3%;
-}
-
-#reviews-form form input[type='text']{
+#review-form form input[type='text'],
+#review-form form input[type='number']{
+  font-size: 19px;
   border-width: 0 0 2px 0;
   border-color: #3397db;
+  background: transparent;
 }
 
-#reviews-form form input[type='submit']{
-  padding: 1%;
+#review-form form input[type='submit']{
+  position: relative;
+  left: 79%;
+  padding: 2%;
   background: #242730;
   color: #fff;
   border-radius: 5px;
-  font-size: 19px;
+  font-size: 18px;
 }
 
-#reviews-form form textarea{
-  border: 1px dotted #3397db;
+#review-form form textarea{
+  border: 1px double #3397db;
+  background: transparent;
 }
 
 #restaurant-hours {

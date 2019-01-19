@@ -1,8 +1,6 @@
 let restaurant;
 var newMap;
 let review;
-let reviewForm = document.querySelector('#reviews-form');
-let overlay = document.querySelector('#overlay');
 
 /**
  * Initialize map as soon as the page is loaded.
@@ -12,11 +10,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
 });
 
 /**
- * Show form for adding reviews
+ * Form listener
  */
-document.querySelector('#add_review_btn').addEventListener('click', (e) => {
-  overlay.style.display = 'block';
-  reviewForm.style.display = 'block';
+document.querySelector('#form_rev').addEventListener('submit', e => {
+  e.preventDefault();
+  console.log(e);
 })
 
 /**
