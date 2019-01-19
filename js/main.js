@@ -9,7 +9,7 @@ var markers = []
 * Service Worker Codes
 */
 
-/* if('serviceWorker' in navigator){
+if('serviceWorker' in navigator){
   navigator.serviceWorker.register('./sw.js')
   .then(() => {
     console.log('Service Worker Registered!');
@@ -17,7 +17,7 @@ var markers = []
   .catch((err)=>{
     console.log(err);
   })
-} */
+}
 
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.

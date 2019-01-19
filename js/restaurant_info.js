@@ -14,7 +14,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
  */
 document.querySelector('#form_rev').addEventListener('submit', e => {
   e.preventDefault();
-  console.log(e);
+  let data = {
+    restaurant_id: parseInt(getParameterByName('id')),
+    name: e.target.querySelector('#reviewer_name').value,
+    rating: parseInt(e.target.querySelector('#rating').value),
+    comments: e.target.querySelector('#comment').value
+  }
+  postReviewData(data);
 })
 
 /**
@@ -99,14 +105,27 @@ fetchRestaurantFromURL = (callback) => {
  * Get current restaurant review from page URL.
  */
 fetchRestaurantReview = (restaurant_id = self.restaurant.id) => {
-  DBReviewHelper.fetchReviewsByRestaurantId(restaurant_id, (error, results) => {
+  DBReviewHelper.fetchReviews((error, results) => {
     if (error) {
       console.log(error)
     }else{
       fillReviewsHTML(results)
     }
   })
+}
 
+/**
+ * Post Review data to review endpoint
+ */
+postReviewData = (data) => {
+  DBReviewHelper.postReview(data, (error, resp) => {
+    if (error) {
+      console.log(error);
+    }else{
+      console.log(resp);
+      document.location.reload();
+    }
+  })
 }
 
 /**

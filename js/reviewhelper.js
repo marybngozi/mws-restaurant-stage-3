@@ -3,12 +3,25 @@
  */
 class DBReviewHelper {
 
+  static getParameterByName(name, url){
+    if (!url)
+      url = window.location.href;
+    name = name.replace(/[\[\]]/g, '\\$&');
+    const regex = new RegExp(`[?&]${name}(=([^&#]*)|&|#|$)`),
+      results = regex.exec(url);
+    if (!results)
+      return null;
+    if (!results[2])
+      return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+  }
+
   /**
    * Review Database URL.
    */
   static get DATABASE_REVIEW_URL() {
     const port = 1337 // Change this to your server port
-    return `http://localhost:${port}/reviews`;
+    return `http://localhost:${port}/reviews/?restaurant_id=${getParameterByName('id')}`;
   }
 
   /**
@@ -42,7 +55,7 @@ class DBReviewHelper {
   /**
    * Fetch a review by its ID.
    */
-  static fetchReviewById(id, callback) {
+  /* static fetchReviewById(id, callback) {
     // fetch all reviews with proper error handling.
     DBReviewHelper.fetchReviews((error, reviews) => {
       if (error) {
@@ -56,43 +69,24 @@ class DBReviewHelper {
         }
       }
     });
-  }
-
-  /**
-   * Fetch reviews by a restaurant id with proper error handling.
-   */
-  static fetchReviewsByRestaurantId(restaurant_id, callback) {
-    // Fetch all reviews with proper error handling
-    DBReviewHelper.fetchReviews((error, reviews) => {
-      if (error) {
-        callback(error, null);
-      } else {
-        // Filter reviews to have only given restaurant_id type
-        const results = reviews.filter(r => r.restaurant_id == restaurant_id);
-        callback(null, results);
-      }
-    });
-  }
+  } */
 
   /**
    * Post reviews
    */
   static postReview(data, callback){
-    fetch(DBReviewHelper.DATABASE_REVIEW_URL, {
+    fetch('http://localhost:1337/reviews', {
       method: 'POST',
-      mode: 'cors',
       headers: {
         "Content-Type": "application/json; charset=utf-8"
       },
       body: JSON.stringify(data)
     })
     .then(res => res.json())
-    .then(data => {
-      console.log(JSON.stringify(data))
-      return callback(null, data);
+    .then(result => {
+      return callback(null, result);
     })
     .catch(err => {
-      console.log(err);
       callback(err, null);
     });
   }
