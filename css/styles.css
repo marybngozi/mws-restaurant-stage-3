@@ -81,7 +81,7 @@ section {
 }
 
 #maincontent {
-  margin-top: 50px;
+  margin-top: 160px;
   background-color: #f3f3f3;
   min-height: 100%;
   width: 100%
@@ -110,7 +110,7 @@ header {
 }
 
 nav {
-  height: 80px;
+  height: auto;
   background-color: #252831;
   text-align: center;
   padding: 5px
@@ -127,6 +127,12 @@ nav h1 a {
   font-weight: 100;
   letter-spacing: 5px;
   text-transform: uppercase
+}
+
+nav button{
+  outline: none;
+  border: 0;
+  background: transparent;
 }
 
 #breadcrumb {
@@ -335,6 +341,7 @@ nav h1 a {
   background-color: #ccc;
   display: block;
   margin: 20px auto;
+  height: 258px;
   max-width: 100%;
   min-height: 248px;
   min-width: 100%;
@@ -588,7 +595,7 @@ nav h1 a {
 
 #review-form form input[type='submit']{
   position: relative;
-  left: 79%;
+  left: 68%;
   padding: 2%;
   background: #242730;
   color: #fff;

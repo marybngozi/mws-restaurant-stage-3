@@ -10,7 +10,7 @@
     overflow: hidden
   }
   nav {
-    height: 50px;
+    height: auto;
     text-align: center;
     vertical-align: middle;
     line-height: 2.2;
