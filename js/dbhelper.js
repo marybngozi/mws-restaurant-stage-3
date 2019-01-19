@@ -162,7 +162,7 @@ class DBHelper {
     if (restaurant.photograph) {
       return (`./img/${restaurant.photograph}.jpg`);
     }else{
-      return (`https://placeimg.com/500/400/people`);
+      return (`./img/10.jpg`);
     }
   }
 

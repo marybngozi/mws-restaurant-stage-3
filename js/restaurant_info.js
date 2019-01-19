@@ -23,7 +23,7 @@ document.querySelector('#form_rev').addEventListener('submit', e => {
 
   if ('serviceWorker' in navigator && 'SyncManager' in window) {
     navigator.serviceWorker.ready.then(sw => {
-        writeData('reviews', data).then(() => {
+        writeData('post-reviews', data).then(() => {
         return sw.sync.register('new-review');
       })
       .then(() => {
@@ -139,7 +139,7 @@ postReviewData = (data) => {
       console.log(error);
     }else{
       console.log(resp);
-      document.location.reload();
+      document.location.reload(true);
     }
   })
 }

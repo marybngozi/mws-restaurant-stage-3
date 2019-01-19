@@ -1,7 +1,7 @@
 importScripts('/js/idb.js');
 importScripts('/js/utility.js');
 
-const v = 1;
+const v = 5;
 const cacheStaticVer = `static-v${v}`;
 const cacheDynamicVer = `dynamic${v}`;
 const url = 'http://localhost:1337/restaurants/';
@@ -16,7 +16,7 @@ const staticArr = [
   'js/dbhelper.js',
   'js/restaurant_info.js',
   'css/styles.css',
-  '/img/icons/dish.png',
+  './img/icons/dish.png',
   'https://normalize-css.googlecode.com/svn/trunk/normalize.css',
   'https://unpkg.com/leaflet@1.3.1/dist/leaflet.css'
 ]
@@ -125,6 +125,35 @@ self.addEventListener('fetch', (e) => {
   }
 })
 
+self.addEventListener('fetch', (e) => {
+  if(e.request.url.indexOf(review_url) > -1){
+    e.respondWith(fetch(e.request)
+      .then(res => {
+        const clonedRes = res.clone();
+        clearAllData('reviews')
+        .then(() => {
+          return clonedRes.json()
+        })
+        .then(datas => {
+          for (const data in datas) {
+            writeData('reviews', datas[data]);
+          }
+        })
+      return res;
+      })
+    );
+  }else{
+    e.respondWith(
+      fetch(e.request)
+      .then((res) => {
+        return res;
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+    )
+  }
+})
 
 /**
  * Stores Post data offline for later online
@@ -134,7 +163,7 @@ self.addEventListener('sync', (e) => {
   if (e.tag === 'new-review') {
     console.log('[Service Worker] Syncing new posts...');
     e.waitUntil(
-      readAllData('reviews').then(datas => {
+      readAllData('post-reviews').then(datas => {
         for (const data of datas) {
           fetch(review_url, {
             method: 'POST',
@@ -153,7 +182,7 @@ self.addEventListener('sync', (e) => {
             if (res.ok) {
               console.log('Sent data', res);
               res.json().then((resData) => {
-                deleteItemFrmData('reviews', resData.id);
+                deleteItemFrmData('post-reviews', resData.id);
               })
             }
           })

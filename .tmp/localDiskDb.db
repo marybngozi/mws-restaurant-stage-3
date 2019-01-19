@@ -587,6 +587,33 @@
         "createdAt": "2019-01-19T10:37:50.021Z",
         "updatedAt": "2019-01-19T10:37:50.021Z",
         "id": 39
+      },
+      {
+        "restaurant_id": 8,
+        "name": "Obinna",
+        "rating": 5,
+        "comments": "Lorem ipsum dolor sit amet,consetetur sadipscing elitr,  sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,  Stet clita kasd gubergren,  consetetur sadipscing elitr,  ",
+        "createdAt": "2019-01-19T16:13:29.226Z",
+        "updatedAt": "2019-01-19T16:13:29.226Z",
+        "id": 40
+      },
+      {
+        "restaurant_id": 8,
+        "name": "Decko",
+        "rating": 2,
+        "comments": "Lorem ipsum dolor sit amet,consetetur sadipscing elitr,  sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,  Stet clita kasd gubergren,  consetetur sadipscing elitr,  ",
+        "createdAt": "2019-01-19T16:16:58.664Z",
+        "updatedAt": "2019-01-19T16:16:58.664Z",
+        "id": 41
+      },
+      {
+        "restaurant_id": 8,
+        "name": "Obinna",
+        "rating": 5,
+        "comments": "Lorem ipsum dolor sit amet,consetetur sadipscing elitr,  sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,  Stet clita kasd gubergren,  consetetur sadipscing elitr,  ",
+        "createdAt": "2019-01-19T16:16:58.673Z",
+        "updatedAt": "2019-01-19T16:16:58.673Z",
+        "id": 42
       }
     ]
   },
@@ -642,7 +669,7 @@
       "id": 10
     },
     "reviews": {
-      "id": 39
+      "id": 42
     }
   }
 }

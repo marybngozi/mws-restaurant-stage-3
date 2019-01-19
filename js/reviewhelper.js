@@ -39,7 +39,7 @@ class DBReviewHelper {
     .catch(err => {
       console.log(err);
       callback(err, null);
-      /* if ('indexedDB' in window) {
+      if ('indexedDB' in window) {
         readAllData('reviews')
         .then(reviews => {
           if (!networkDataRecieved){
@@ -48,7 +48,7 @@ class DBReviewHelper {
         }).catch(error => {
           callback('Request failed:'+ error, null);
         })
-      } */
+      }
     })
   }
 
