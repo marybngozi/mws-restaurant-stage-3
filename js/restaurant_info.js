@@ -20,7 +20,23 @@ document.querySelector('#form_rev').addEventListener('submit', e => {
     rating: parseInt(e.target.querySelector('#rating').value),
     comments: e.target.querySelector('#comment').value
   }
-  postReviewData(data);
+
+  if ('serviceWorker' in navigator && 'SyncManager' in window) {
+    navigator.serviceWorker.ready.then(sw => {
+        writeData('reviews', data).then(() => {
+        return sw.sync.register('new-review');
+      })
+      .then(() => {
+        // const snackbarContainer = document.querySelector('#confirmation-toast');
+        console.log('Your Post was saved for syncing!');
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+    });
+  }else{
+    postReviewData(data);
+  }
 })
 
 /**

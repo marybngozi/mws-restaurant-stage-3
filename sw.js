@@ -4,7 +4,8 @@ importScripts('/js/utility.js');
 const v = 1;
 const cacheStaticVer = `static-v${v}`;
 const cacheDynamicVer = `dynamic${v}`;
-const url = 'http://localhost:1337/restaurants';
+const url = 'http://localhost:1337/restaurants/';
+const review_url = 'http://localhost:1337/reviews/';
 
 
 const staticArr = [
@@ -117,6 +118,47 @@ self.addEventListener('fetch', (e) => {
                 return cache.match(fetch('/offline.html'));
               }
             })
+          })
+        }
+      })
+    );
+  }
+})
+
+
+/**
+ * Stores Post data offline for later online
+ */
+self.addEventListener('sync', (e) => {
+  console.log('[Service Worker] Background Syncing ...', e);
+  if (e.tag === 'new-review') {
+    console.log('[Service Worker] Syncing new posts...');
+    e.waitUntil(
+      readAllData('reviews').then(datas => {
+        for (const data of datas) {
+          fetch(review_url, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+              restaurant_id: data.restaurant_id,
+              name: data.name,
+              rating: data.rating,
+              comments: data.comments
+            })
+          })
+          .then(res => {
+            if (res.ok) {
+              console.log('Sent data', res);
+              res.json().then((resData) => {
+                deleteItemFrmData('reviews', resData.id);
+              })
+            }
+          })
+          .catch((err) => {
+            console.log('Error sending data', err);
           })
         }
       })

@@ -3,9 +3,9 @@ const dbPromise = idb.open('restaurants-store', 1, (db) => {
   if (!db.objectStoreNames.contains('restaurants')) {
     db.createObjectStore('restaurants', {keyPath: 'id'});
   }
-  /* if (!db.objectStoreNames.contains('sync-posts')) {
-    db.createObjectStore('sync-posts', {keyPath: 'id'});
-  } */
+  if (!db.objectStoreNames.contains('reviews')) {
+    db.createObjectStore('reviews', {keyPath: 'name'});
+  }
 })
 
 function writeData(stall, data) {
