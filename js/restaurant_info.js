@@ -1,12 +1,12 @@
 let restaurant;
 var newMap;
 let review;
-
 /**
  * Initialize map as soon as the page is loaded.
  */
 document.addEventListener('DOMContentLoaded', (event) => {
   initMap();
+  fetchFavorites();
 });
 
 /**
@@ -104,7 +104,7 @@ fetchRestaurantFromURL = (callback) => {
 /**
  * Get current restaurant review from page URL.
  */
-fetchRestaurantReview = (restaurant_id = self.restaurant.id) => {
+fetchRestaurantReview = () => {
   DBReviewHelper.fetchReviews((error, results) => {
     if (error) {
       console.log(error)
@@ -134,6 +134,46 @@ postReviewData = (data) => {
 fillRestaurantHTML = (restaurant = self.restaurant) => {
   const name = document.getElementById('restaurant-name');
   name.innerHTML = restaurant.name;
+
+  const img = document.createElement('img');
+  img.width = "32";
+  img.height = "32";
+  if (restaurant.is_favorite === "true" || restaurant.is_favorite === true) {
+    img.alt = "favorite";
+    img.src = "./img/fav-close.svg";
+  }else{
+    img.alt = "not favorite";
+    img.src = "./img/fav-open.svg";
+  }
+
+  const favoriter = document.createElement('button');
+   /**
+ * listens for favorite button click
+ */
+  favoriter.addEventListener('click', e => {
+    if (e.target.alt == "not favorite") {
+      e.target.alt = "favorite";
+      e.target.src = "./img/fav-close.svg";
+      fetch(`http://localhost:1337/restaurants/${restaurant.id}/?is_favorite=true`,{
+        method: 'PUT'
+      })
+      .then(() => {
+        fetchFavorites();
+      })
+    }else{
+      e.target.alt = "not favorite";
+      e.target.src = "./img/fav-open.svg";
+      fetch(`http://localhost:1337/restaurants/${restaurant.id}/?is_favorite=false`,{
+        method: 'PUT'
+      })
+      .then(() => {
+        fetchFavorites();
+      })
+    }
+  })
+
+  favoriter.append(img);
+  name.append(favoriter)
 
   const address = document.getElementById('restaurant-address');
   address.innerHTML = restaurant.address;

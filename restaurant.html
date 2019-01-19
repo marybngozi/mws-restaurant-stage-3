@@ -36,7 +36,7 @@
     <!-- Beginning nav -->
     <nav>
       <h1><a href="/">Restaurant Reviews</a></h1>
-      <button id="favorite"><img src="./img/fav-open.svg" width="32" height="32" alt="favorite restaurants"></button>
+      <button id="favorite"><img src="./img/fav-open.svg" width="32" height="32" alt="no favorites"></button>
     </nav>
     <!-- Beginning breadcrumb -->
     <nav role="navigation" aria-label="Breabcrumb">
@@ -48,7 +48,10 @@
     <!-- End nav -->
   </header>
   <!-- End header -->
-
+  <section id="favorite-view">
+    <h4>FAVORITES</h4>
+    <ul id="favorite-list"></ul>
+  </section>
   <!-- Beginning main -->
   <main id="maincontent">
     <!-- Beginning map -->
@@ -88,7 +91,6 @@
       </form>
     </section>
     <!-- End reviews -->
-
   </main>
   <!-- End main -->
 
@@ -101,7 +103,7 @@
   <!-- Beginning scripts -->
   <!-- Service Worker & IDB scripts -->
   <script type="application/javascript" charset="utf-8" src="./js/idb.js"></script>
-  <script type="application/javascript" charset="utf-8" src="./js/utility.js"></script>
+  <script type="text/javascript" src="./js/utility.js"></script>
   <!-- Database helpers -->
   <script type="text/javascript" src="./js/dbhelper.js"></script>
   <script type="text/javascript" src="./js/reviewhelper.js"></script>

@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   initMap(); // added
   fetchNeighborhoods();
   fetchCuisines();
+  fetchFavorites();
 });
 
 /**
@@ -180,12 +181,51 @@ createRestaurantHTML = (restaurant) => {
   image.alt = restaurant.name;
   li.append(image);
 
+  const btn = document.createElement('button');
+  /**
+ * listens for favorite button click
+ */
+  btn.addEventListener('click', e => {
+    if (e.target.alt == "not favorite") {
+      e.target.alt = "favorite";
+      e.target.src = "./img/fav-close.svg";
+      fetch(`http://localhost:1337/restaurants/${restaurant.id}/?is_favorite=true`,{
+        method: 'PUT'
+      })
+      .then(() => {
+        fetchFavorites();
+      })
+    }else{
+      e.target.alt = "not favorite";
+      e.target.src = "./img/fav-open.svg";
+      fetch(`http://localhost:1337/restaurants/${restaurant.id}/?is_favorite=false`,{
+        method: 'PUT'
+      })
+      .then(() => {
+        fetchFavorites();
+      })
+    }
+  })
+
+  const favorite = document.createElement('img');
+  favorite.width = "24";
+  favorite.height = "24";
+
   const name = document.createElement('h2');
   name.innerHTML = restaurant.name;
   li.append(name);
 
   const neighborhood = document.createElement('p');
-  neighborhood.innerHTML = restaurant.neighborhood;
+  neighborhood.innerHTML = restaurant.neighborhood+"   ";
+  if (restaurant.is_favorite === "true" || restaurant.is_favorite === true) {
+    favorite.alt = "favorite";
+    favorite.src = "./img/fav-close.svg";
+  }else{
+    favorite.alt = "not favorite";
+    favorite.src = "./img/fav-open.svg";
+  }
+  btn.append(favorite);
+  neighborhood.append(btn);
   li.append(neighborhood);
 
   const address = document.createElement('p');

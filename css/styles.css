@@ -351,7 +351,7 @@ nav button{
 }
 
 #restaurants-list li h2 {
-  color: orange;
+  color: #e8781c;
   font-family: Arial, sans-serif;
   font-size: 1em;
   font-weight: 200;
@@ -367,8 +367,20 @@ nav button{
   font-size: 11pt
 }
 
+#restaurants-list p button {
+  width: auto;
+  background: transparent;
+  border: 0;
+}
+
+#restaurants-list p button:focus {
+  outline: none;
+  border: 0;
+  box-shadow: 0 0;
+}
+
 #restaurants-list li a {
-  background-color: orange;
+  background-color: #e8781c;
   border: none;
   color: #fff;
   display: inline-block;
@@ -380,8 +392,8 @@ nav button{
   text-transform: uppercase;
   width: 100%;
   border-radius: 2px;
-  -webkit-box-shadow: 0 5px 15px 0 rgba(0, 0, 0, .4);
-  box-shadow: 0 5px 15px 0 rgba(0, 0, 0, .4);
+  -webkit-box-shadow: 1px 3px 2px 0 rgba(0, 0, 0, .4);
+  box-shadow: 1px 3px 2px 0 rgba(0, 0, 0, .4);
   cursor: pointer;
   -webkit-transition: all .5s ease;
   transition: all .5s ease
@@ -457,6 +469,16 @@ nav button{
   margin: 5px 0 30px;
   text-transform: uppercase;
   line-height: 1.1
+}
+
+#restaurant-name button {
+  background: transparent;
+  border: 0;
+  box-shadow: 0 0;
+}
+
+#restaurant-name button:focus{
+  box-shadow: 0 0;
 }
 
 #restaurant-img {
@@ -622,4 +644,46 @@ nav button{
   border: 1px dotted #ccc;
   padding: 0.7em;
   width: 50%
+}
+
+#favorite-view{
+  position: fixed;
+  background: #fafafa;
+  top: 94px;
+  z-index: 400;
+  width: 99%;
+  margin: 0 0.5%;
+  padding: 2%;
+  align-content: center;
+  -webkit-box-shadow: 2px 1px 1px 0px rgba(0, 0, 0, .2);
+  box-shadow: 2px 1px 1px 0px rgba(0, 0, 0, .2);
+  display: none;
+  transition: display 0.4s ease;
+}
+#favorite-view.open{
+  display: block;
+  border: 0;
+  border-radius: 0 0 7px 7px;
+  box-shadow: 1px 1px 2px 1px #e8781c;
+  transition: display 0.4s ease;
+}
+#favorite-view h4{
+  margin-bottom: 0;
+  color: #3397db;
+  text-align: center;
+}
+#favorite-view ul{
+  margin: 5px auto;
+  padding: 1%;
+
+}
+#favorite-view ul li{
+  list-style: none;
+  padding: 2%;
+  border-bottom: 1px solid lightgray
+}
+#favorite-view ul li a{
+  color: #242730;
+  font-size: 19px;
+  letter-spacing: 1px;
 }
