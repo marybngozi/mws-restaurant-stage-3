@@ -45,6 +45,6 @@ function deleteItemFrmData(stall, id) {
     return tx.complete;
   })
   .then(() => {
-    console.log('Item Deleted');
+    // console.log('Item Deleted');
   })
 }

@@ -1,21 +1,27 @@
 importScripts('/js/idb.js');
 importScripts('/js/utility.js');
 
-const v = 5;
+const v = 1;
 const cacheStaticVer = `static-v${v}`;
-const cacheDynamicVer = `dynamic${v}`;
-const url = 'http://localhost:1337/restaurants/';
-const review_url = 'http://localhost:1337/reviews/';
+const cacheDynamicVer = `dynamic-v${v}`;
+const restaurant_url = 'http://localhost:1337/restaurants';
+const review_url = 'http://localhost:1337/reviews';
+const favorite_url = 'http://localhost:1337/restaurants/?is_favorite=true';
 
 
 const staticArr = [
   '/',
-  'index.html',
-  'restaurant.html',
-  'js/main.js',
-  'js/dbhelper.js',
-  'js/restaurant_info.js',
-  'css/styles.css',
+  './index.html',
+  './restaurant.html',
+  './js/main.js',
+  './js/dbhelper.js',
+  './js/reviewhelper.js',
+  '/js/restaurant_info.js',
+  '/js/utility.js',
+  '/js/tools.js',
+  '/js/idb.js',
+  '/css/styles.css',
+  '/css/media.css',
   './img/icons/dish.png',
   'https://normalize-css.googlecode.com/svn/trunk/normalize.css',
   'https://unpkg.com/leaflet@1.3.1/dist/leaflet.css'
@@ -71,7 +77,7 @@ self.addEventListener('activate', (e) => {
 * Cache dot network strategy
 */
 self.addEventListener('fetch', (e) => {
-  if(e.request.url.indexOf(url) > -1){
+  if(e.request.url == restaurant_url){ //stores restaurants to indexedDB
     e.respondWith(fetch(e.request)
       .then(res => {
         const clonedRes = res.clone();
@@ -82,12 +88,28 @@ self.addEventListener('fetch', (e) => {
         .then(datas => {
           for (const data in datas) {
             writeData('restaurants', datas[data])
-            /* .then(() => { //deleting individual items
-              deleteItemFrmData('posts', data);
-            })  */
           }
         })
-      return res;
+        return res;
+      })
+    );
+  }else if(e.request.url.indexOf(review_url) > -1){ //stores reviews to indexedDB
+    e.respondWith(fetch(e.request)
+      .then(res => {
+        const clonedRes = res.clone();
+        return clonedRes.json()
+        .then(datas => {
+          for (const data in datas) {
+            writeData('reviews', datas[data]);
+          }
+          return res;
+        })
+      })
+    );
+  }else if(e.request.url == favorite_url){ //fetches favorites from server
+    e.respondWith(fetch(e.request)
+      .then(res => {
+        return res;
       })
     );
   }else if(isInArr(e.request.url, staticArr)){
@@ -125,35 +147,6 @@ self.addEventListener('fetch', (e) => {
   }
 })
 
-self.addEventListener('fetch', (e) => {
-  if(e.request.url.indexOf(review_url) > -1){
-    e.respondWith(fetch(e.request)
-      .then(res => {
-        const clonedRes = res.clone();
-        clearAllData('reviews')
-        .then(() => {
-          return clonedRes.json()
-        })
-        .then(datas => {
-          for (const data in datas) {
-            writeData('reviews', datas[data]);
-          }
-        })
-      return res;
-      })
-    );
-  }else{
-    e.respondWith(
-      fetch(e.request)
-      .then((res) => {
-        return res;
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-    )
-  }
-})
 
 /**
  * Stores Post data offline for later online
@@ -182,7 +175,8 @@ self.addEventListener('sync', (e) => {
             if (res.ok) {
               console.log('Sent data', res);
               res.json().then((resData) => {
-                deleteItemFrmData('post-reviews', resData.id);
+                writeData('reviews', resData);
+                deleteItemFrmData('post-reviews', resData.name);
               })
             }
           })

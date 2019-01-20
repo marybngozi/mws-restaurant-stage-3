@@ -5,7 +5,8 @@
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   -o-box-sizing: border-box;
-  -ms-box-sizing: border-box
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body,
@@ -341,9 +342,9 @@ nav button{
   background-color: #ccc;
   display: block;
   margin: 20px auto;
-  height: 258px;
+  height: 245px;
   max-width: 100%;
-  min-height: 248px;
+  min-height: 240px;
   min-width: 100%;
   border-radius: 2px;
   -webkit-transition: all 2s ease;
@@ -357,7 +358,7 @@ nav button{
   font-weight: 200;
   letter-spacing: 0;
   line-height: 1.3;
-  margin: 20px 0 10px;
+  margin: 15px 0 0px;
   text-transform: uppercase;
   max-width: 100%
 }
@@ -605,6 +606,8 @@ nav button{
   padding: 2%;
   margin: 10px auto;
   margin-bottom: 80px;
+  justify-content: center;
+  display: flex;
 }
 
 #review-form form input[type='text'],
@@ -652,6 +655,8 @@ nav button{
   top: 94px;
   z-index: 400;
   width: 99%;
+  max-height: 330px;
+  overflow: scroll;
   margin: 0 0.5%;
   padding: 2%;
   align-content: center;
@@ -680,7 +685,11 @@ nav button{
 #favorite-view ul li{
   list-style: none;
   padding: 2%;
-  border-bottom: 1px solid lightgray
+  border-bottom: 1px solid lightgray;
+}
+#favorite-view ul li:last-child{
+  border-bottom: 0;
+  padding-bottom: 0
 }
 #favorite-view ul li a{
   color: #242730;

@@ -23,12 +23,13 @@ document.querySelector('#form_rev').addEventListener('submit', e => {
 
   if ('serviceWorker' in navigator && 'SyncManager' in window) {
     navigator.serviceWorker.ready.then(sw => {
-        writeData('post-reviews', data).then(() => {
+      writeData('post-reviews', data).then(() => {
         return sw.sync.register('new-review');
       })
       .then(() => {
         // const snackbarContainer = document.querySelector('#confirmation-toast');
         console.log('Your Post was saved for syncing!');
+        document.location.reload(true);
       })
       .catch((err) => {
         console.log(err);
@@ -168,22 +169,27 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
  */
   favoriter.addEventListener('click', e => {
     if (e.target.alt == "not favorite") {
-      e.target.alt = "favorite";
-      e.target.src = "./img/fav-close.svg";
       fetch(`http://localhost:1337/restaurants/${restaurant.id}/?is_favorite=true`,{
-        method: 'PUT'
+        method: 'PUT',
+        cache: "no-cache"
       })
       .then(() => {
         fetchFavorites();
+        e.target.alt = "favorite";
+        e.target.src = "./img/fav-close.svg";
+        console.log("fetchern");
       })
     }else{
-      e.target.alt = "not favorite";
-      e.target.src = "./img/fav-open.svg";
       fetch(`http://localhost:1337/restaurants/${restaurant.id}/?is_favorite=false`,{
-        method: 'PUT'
+        method: 'PUT',
+        cache: "no-cache"
       })
       .then(() => {
         fetchFavorites();
+        e.target.alt = "not favorite";
+        e.target.src = "./img/fav-open.svg";
+        console.log("fetcher");
+
       })
     }
   })

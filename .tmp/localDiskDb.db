@@ -21,7 +21,7 @@
           "Sunday": "12:00 pm - 4:00 pm, 5:30 pm - 11:00 pm"
         },
         "createdAt": 1504095563444,
-        "updatedAt": "2019-01-19T12:37:59.218Z",
+        "updatedAt": "2019-01-20T18:48:24.197Z",
         "id": 1,
         "is_favorite": "false"
       },
@@ -45,7 +45,7 @@
           "Sunday": "12:00 pm - 3:00 pm, 5:00 pm - 11:00 pm"
         },
         "createdAt": 1504095568414,
-        "updatedAt": "2019-01-19T14:55:29.752Z",
+        "updatedAt": "2019-01-20T18:48:21.114Z",
         "is_favorite": "false",
         "id": 2
       },
@@ -69,8 +69,9 @@
           "Sunday": "11:30 am - 2:00 am"
         },
         "createdAt": 1504095571434,
-        "updatedAt": 1504095571434,
-        "id": 3
+        "updatedAt": "2019-01-20T18:57:59.135Z",
+        "id": 3,
+        "is_favorite": "false"
       },
       {
         "name": "Katz's Delicatessen",
@@ -92,7 +93,7 @@
           "Sunday": "Sat - 10:30 pm"
         },
         "createdAt": 1504095567091,
-        "updatedAt": "2019-01-19T14:55:58.980Z",
+        "updatedAt": "2019-01-20T18:57:46.498Z",
         "is_favorite": "false",
         "id": 4
       },
@@ -116,8 +117,8 @@
           "Sunday": "10:00 am - 12:00 am"
         },
         "createdAt": 1504095567071,
-        "updatedAt": 1504095567071,
-        "is_favorite": false,
+        "updatedAt": "2019-01-20T18:34:55.034Z",
+        "is_favorite": "false",
         "id": 5
       },
       {
@@ -140,8 +141,8 @@
           "Sunday": "12:00 pm - 9:00 pm"
         },
         "createdAt": 1504095567071,
-        "updatedAt": 1504095567071,
-        "is_favorite": false,
+        "updatedAt": "2019-01-20T18:48:29.408Z",
+        "is_favorite": "false",
         "id": 6
       },
       {
@@ -164,8 +165,8 @@
           "Sunday": "11:30 am - 10:00 pm"
         },
         "createdAt": 1504095567091,
-        "updatedAt": 1504095567091,
-        "is_favorite": false,
+        "updatedAt": "2019-01-20T18:48:35.943Z",
+        "is_favorite": "false",
         "id": 7
       },
       {
@@ -188,8 +189,8 @@
           "Sunday": "10:00 am - 3:00 pm, 5:30 pm - 11:00 pm"
         },
         "createdAt": 1504095567091,
-        "updatedAt": "2019-01-19T16:21:44.735Z",
-        "is_favorite": "true",
+        "updatedAt": "2019-01-20T18:48:34.573Z",
+        "is_favorite": "false",
         "id": 8
       },
       {
@@ -212,8 +213,8 @@
           "Sunday": "5:00 pm - 10:00 pm"
         },
         "createdAt": 1504095567191,
-        "updatedAt": 1504095567191,
-        "is_favorite": false,
+        "updatedAt": "2019-01-20T18:48:31.775Z",
+        "is_favorite": "false",
         "id": 9
       },
       {
@@ -614,6 +615,51 @@
         "createdAt": "2019-01-19T16:16:58.673Z",
         "updatedAt": "2019-01-19T16:16:58.673Z",
         "id": 42
+      },
+      {
+        "restaurant_id": 2,
+        "name": "Okey",
+        "rating": 4,
+        "comments": "Lorem ipsum dolor sit amet,At vero eos et accusam et justo duo dolores et ea rebum.  Lorem ipsum dolor sit amet,  no sea takimata sanctus est Lorem ipsum dolor sit amet.  consetetur sadipscing elitr,  ",
+        "createdAt": "2019-01-19T23:53:27.742Z",
+        "updatedAt": "2019-01-19T23:53:27.742Z",
+        "id": 43
+      },
+      {
+        "restaurant_id": 2,
+        "name": "Moses",
+        "rating": 5,
+        "comments": "Lorem ipsum dolor sit amet,At vero eos et accusam et justo duo dolores et ea rebum.  Lorem ipsum dolor sit amet,  no sea takimata sanctus est Lorem ipsum dolor sit amet.  consetetur sadipscing elitr,  ",
+        "createdAt": "2019-01-19T23:54:35.624Z",
+        "updatedAt": "2019-01-19T23:54:35.624Z",
+        "id": 44
+      },
+      {
+        "restaurant_id": 2,
+        "name": "Musa",
+        "rating": 3,
+        "comments": "Lorem ipsum dolor sit amet,At vero eos et accusam et justo duo dolores et ea rebum.  Lorem ipsum dolor sit amet,  no sea takimata sanctus est Lorem ipsum dolor sit amet.  consetetur sadipscing elitr,  ",
+        "createdAt": "2019-01-19T23:55:41.596Z",
+        "updatedAt": "2019-01-19T23:55:41.596Z",
+        "id": 45
+      },
+      {
+        "restaurant_id": 1,
+        "name": "Friend",
+        "rating": 5,
+        "comments": "Lorem ipsum dolor sit amet,At vero eos et accusam et justo duo dolores et ea rebum.  sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,  Stet clita kasd gubergren,  Lorem ipsum dolor sit amet,  ",
+        "createdAt": "2019-01-20T01:28:08.783Z",
+        "updatedAt": "2019-01-20T01:28:08.783Z",
+        "id": 46
+      },
+      {
+        "restaurant_id": 4,
+        "name": "Lynda",
+        "rating": 4,
+        "comments": "Lorem ipsum dolor sit amet,no sea takimata sanctus est Lorem ipsum dolor sit amet.  no sea takimata sanctus est Lorem ipsum dolor sit amet.  Stet clita kasd gubergren,  Lorem ipsum dolor sit amet,  ",
+        "createdAt": "2019-01-20T01:28:08.784Z",
+        "updatedAt": "2019-01-20T01:28:08.784Z",
+        "id": 47
       }
     ]
   },
@@ -669,7 +715,7 @@
       "id": 10
     },
     "reviews": {
-      "id": 42
+      "id": 47
     }
   }
 }

@@ -1,8 +1,14 @@
+let favorite_img = document.querySelector('#favorites');
+let favorite_view = document.querySelector('#favorite-view');
+let favorite_list = document.querySelector('#favorite-list');
+
 /**
  * Update favorite icon
  */
 fetchFavorites = () => {
-  fetch('http://localhost:1337/restaurants/?is_favorite=true')
+  fetch('http://localhost:1337/restaurants/?is_favorite=true',{
+    cache: "no-cache"
+  })
   .then(res => res.json())
   .then(favorites => {
     if (favorites.length > 0) {
@@ -19,14 +25,9 @@ fetchFavorites = () => {
 /**
  * Ultities for index and restaurant html
  */
-let favorite_img = document.querySelector('#favorite img');
-let favorite_view = document.querySelector('#favorite-view');
-let favorite_list = document.querySelector('#favorite-list');
-
 favorite_img.addEventListener('click', e => {
   if(e.target.alt == "show favorites"){
     fetchFavorites();
-    // createFavoriteHtml(fetchFavorites());
     favorite_view.classList.toggle('open');
   }
 })

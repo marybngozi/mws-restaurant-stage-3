@@ -187,22 +187,24 @@ createRestaurantHTML = (restaurant) => {
  */
   btn.addEventListener('click', e => {
     if (e.target.alt == "not favorite") {
-      e.target.alt = "favorite";
-      e.target.src = "./img/fav-close.svg";
       fetch(`http://localhost:1337/restaurants/${restaurant.id}/?is_favorite=true`,{
-        method: 'PUT'
+        method: 'PUT',
+        cache: "no-cache"
       })
       .then(() => {
         fetchFavorites();
+        e.target.alt = "favorite";
+        e.target.src = "./img/fav-close.svg";
       })
     }else{
-      e.target.alt = "not favorite";
-      e.target.src = "./img/fav-open.svg";
       fetch(`http://localhost:1337/restaurants/${restaurant.id}/?is_favorite=false`,{
-        method: 'PUT'
+        method: 'PUT',
+        cache: "no-cache"
       })
       .then(() => {
         fetchFavorites();
+        e.target.alt = "not favorite";
+        e.target.src = "./img/fav-open.svg";
       })
     }
   })
