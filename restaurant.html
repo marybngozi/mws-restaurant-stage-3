@@ -36,7 +36,7 @@
     <!-- Beginning nav -->
     <nav>
       <h1><a href="/">Restaurant Reviews</a></h1>
-      <button><img src="./img/fav-open.svg" id="favorites" width="32" height="32" alt="no favorites"></button>
+      <button aria-label="show favorites"><img src="./img/fav-open.svg" id="favorites" width="32" height="32" alt="no favorites"></button>
     </nav>
     <!-- Beginning breadcrumb -->
     <nav role="navigation" aria-label="Breabcrumb">
@@ -80,13 +80,13 @@
         <h3>Add a Review</h3>
         <form action="" method="post" id="form_rev">
           <label for="reviewer_name"> Name:
-            &nbsp;<input type="text" name="reviewer_name" id="reviewer_name" required>
+            <input type="text" name="reviewer_name" id="reviewer_name" required>
           </label><br><br>
           <label for="rating"> Rating:
-            &nbsp;<input type="number" min="0" max="5" name="rating" id="rating" required>
+            <input type="number" min="0" max="5" name="rating" id="rating" required>
           </label><br><br>
           <label for="comment"> Comments:
-            &nbsp;<textarea name="comment" id="comment" cols="30" rows="3" required></textarea>
+            <textarea name="comment" id="comment" cols="30" rows="3" required></textarea>
           </label><br>
           <input type="submit" id="submit" value="Submit">
         </form>

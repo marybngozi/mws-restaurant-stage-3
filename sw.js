@@ -1,7 +1,7 @@
 importScripts('/js/idb.js');
 importScripts('/js/utility.js');
 
-const v = 1;
+const v = 5;
 const cacheStaticVer = `static-v${v}`;
 const cacheDynamicVer = `dynamic-v${v}`;
 const restaurant_url = 'http://localhost:1337/restaurants';
@@ -175,6 +175,7 @@ self.addEventListener('sync', (e) => {
             if (res.ok) {
               console.log('Sent data');
               res.json().then((resData) => {
+                deleteItemFrmData('reviews', data.id);
                 writeData('reviews', resData);
                 deleteItemFrmData('post-reviews', resData.name);
               })

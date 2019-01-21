@@ -616,6 +616,7 @@ nav button{
   border-width: 0 0 2px 0;
   border-color: #3397db;
   background: transparent;
+  margin-left: 4px;
 }
 
 #review-form form input[type='submit']{
@@ -631,6 +632,7 @@ nav button{
 #review-form form textarea{
   border: 1px double #3397db;
   background: transparent;
+  margin-left: 4px;
 }
 
 #restaurant-hours {

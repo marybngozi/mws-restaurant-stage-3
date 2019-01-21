@@ -15,17 +15,16 @@ For Local server
 - Sails.js
 
 ### Installing
-```Install python on your machine
+Install python on your machine
 
-```
 
-```Install project dependancies
+Install project dependancies
 # npm i
-```
 
-```Install sails global
+
+Install sails global
 # npm i sails -g
-```
+
 
 ###### Start the server
 ```Start server

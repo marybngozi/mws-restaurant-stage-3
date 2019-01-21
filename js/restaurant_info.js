@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 document.querySelector('#form_rev').addEventListener('submit', e => {
   e.preventDefault();
   let data = {
+    id: `post_${Math.floor(Math.random() * Math.floor(150))}`,
     restaurant_id: parseInt(getParameterByName('id')),
     name: e.target.querySelector('#reviewer_name').value,
     createdAt: Date.now(),
@@ -28,13 +29,15 @@ document.querySelector('#form_rev').addEventListener('submit', e => {
         return sw.sync.register('new-review');
       })
       .then(() => {
-        console.log('Your Post was saved for syncing!');
+        writeData('reviews', data).then(() => {
+          console.log('Your Post was saved for syncing!');
+          
+          let ul = document.getElementById('reviews-list');
+          ul.appendChild(createReviewHTML(data));
 
-        let ul = document.getElementById('reviews-list');
-        ul.appendChild(createReviewHTML(data));
-        
-        document.querySelectorAll('input[type=text], input[type=number], textarea').forEach(field => {
-          field.value = "";
+          document.querySelectorAll('input[type=text], input[type=number], textarea').forEach(field => {
+            field.value = "";
+          })
         })
       })
       .catch((err) => {
@@ -103,6 +106,7 @@ initMap = () => {
     }
   });
 } */
+
 
 /**
  * Get current restaurant from page URL.
@@ -214,7 +218,7 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   const image = document.getElementById('restaurant-img');
   image.className = 'restaurant-img';
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
-  image.alt = restaurant.name;
+  image.alt = `this is an image of the ${restaurant.name} restaurant`;
 
   const cuisine = document.getElementById('restaurant-cuisine');
   cuisine.innerHTML = restaurant.cuisine_type;
