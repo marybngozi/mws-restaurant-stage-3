@@ -18,27 +18,22 @@ For Local server
 Install python on your machine
 
 
-Install project dependancies
+Install project dependancies, on terminal inside project folder run
 # npm i
-
 
 Install sails global
 # npm i sails -g
 
-
-###### Start the server
-```Start server
+Start the server on terminal inside project folder run
 # node server
-```
 
 ### You should now have access to your API server environment
 debug: Environment : development
 debug: Port        : 1337
 
-###### Start the app
-```Start app on any port (e.g. 8000)
+### Start the app
+Start app on any port (e.g. 8000) on terminal inside project folder run
 # python3 -m http.server <port>
-```
 
 ### You should now have access to the app
 Serving HTTP on 0.0.0.0 port 8000 (http://0.0.0.0:8000/) ...
