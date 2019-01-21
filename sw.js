@@ -152,7 +152,7 @@ self.addEventListener('fetch', (e) => {
  * Stores Post data offline for later online
  */
 self.addEventListener('sync', (e) => {
-  console.log('[Service Worker] Background Syncing ...', e);
+  console.log('[Service Worker] Background Syncing ...');
   if (e.tag === 'new-review') {
     console.log('[Service Worker] Syncing new posts...');
     e.waitUntil(
@@ -173,7 +173,7 @@ self.addEventListener('sync', (e) => {
           })
           .then(res => {
             if (res.ok) {
-              console.log('Sent data', res);
+              console.log('Sent data');
               res.json().then((resData) => {
                 writeData('reviews', resData);
                 deleteItemFrmData('post-reviews', resData.name);

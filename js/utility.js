@@ -4,7 +4,7 @@ const dbPromise = idb.open('restaurants-store', 1, (db) => {
     db.createObjectStore('restaurants', {keyPath: 'id'});
   }
   if (!db.objectStoreNames.contains('reviews')) {
-    db.createObjectStore('reviews', {keyPath: 'name'});
+    db.createObjectStore('reviews', {keyPath: 'id'});
   }
   if (!db.objectStoreNames.contains('post-reviews')) {
     db.createObjectStore('post-reviews', {keyPath: 'name'});

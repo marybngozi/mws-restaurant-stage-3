@@ -17,6 +17,7 @@ document.querySelector('#form_rev').addEventListener('submit', e => {
   let data = {
     restaurant_id: parseInt(getParameterByName('id')),
     name: e.target.querySelector('#reviewer_name').value,
+    createdAt: Date.now(),
     rating: parseInt(e.target.querySelector('#rating').value),
     comments: e.target.querySelector('#comment').value
   }
@@ -27,16 +28,26 @@ document.querySelector('#form_rev').addEventListener('submit', e => {
         return sw.sync.register('new-review');
       })
       .then(() => {
-        // const snackbarContainer = document.querySelector('#confirmation-toast');
         console.log('Your Post was saved for syncing!');
-        document.location.reload(true);
+
+        let ul = document.getElementById('reviews-list');
+        ul.appendChild(createReviewHTML(data));
+        
+        document.querySelectorAll('input[type=text], input[type=number], textarea').forEach(field => {
+          field.value = "";
+        })
       })
       .catch((err) => {
         console.log(err);
       })
     });
   }else{
-    postReviewData(data);
+    postReviewData({
+      restaurant_id: data.restaurant_id,
+      name: data.name,
+      rating: data.rating,
+      comments: data.comments
+    });
   }
 })
 
@@ -164,7 +175,7 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   }
 
   const favoriter = document.createElement('button');
-   /**
+/**
  * listens for favorite button click
  */
   favoriter.addEventListener('click', e => {
@@ -243,6 +254,7 @@ fillReviewsHTML = (reviews) => {
   const container = document.getElementById('reviews-container');
   const title = document.createElement('h3');
   title.innerHTML = 'Reviews';
+  title.id = 'reviews-title';
   container.appendChild(title);
 
   if (!reviews) {
@@ -252,8 +264,11 @@ fillReviewsHTML = (reviews) => {
     return;
   }
   const ul = document.getElementById('reviews-list');
+  ul.innerHTML = "";
   reviews.forEach(review => {
-    ul.appendChild(createReviewHTML(review));
+    if (review.restaurant_id == getParameterByName('id')) {
+      ul.appendChild(createReviewHTML(review));
+    }
   });
   container.appendChild(ul);
 }
